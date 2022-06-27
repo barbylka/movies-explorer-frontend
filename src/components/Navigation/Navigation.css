@@ -1,0 +1,134 @@
+.nav {
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  right: -200%;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  background: #fff;
+  padding: 144px 20px 55px;
+  text-align: center;
+  transition: all 0.7s ease;
+}
+
+.nav__active {
+  right: 0;
+}
+
+.nav__list {
+  display: inline-flex;
+  flex-direction: column;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.nav__link {
+  color: #000;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.22;
+  text-decoration: none;
+  transition: all .3s ease;
+}
+
+.nav__link:hover {
+  opacity: .7;
+}
+
+.nav__link_active {
+  padding-bottom: 7px;
+  border-bottom: 2px solid #000;
+}
+
+.nav__list-item {
+  margin-bottom: 24px;
+}
+
+.nav__list-item:last-of-type {
+  margin-top: auto;
+  margin-bottom: 0;
+}
+
+.nav__link:last-of-type {
+  font-size: 14px;
+  line-height: 1.14;
+}
+
+.nav__img {
+  width: 11.5px;
+  height: 14px;
+  margin: 0 0 0 24px;
+}
+
+@media screen and (min-width: 768px) {
+  .nav {
+    width: 68%;
+    padding-top: 159px;
+    padding-bottom: 92px;
+  }
+
+  .nav::before {
+    content: "";
+    background-color: #000;
+    opacity: .3;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: -100%;
+  }
+
+  .nav__list-item {
+    margin-bottom: 28px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .nav {
+    margin: 0 0 0 44px;
+    position: static;
+    padding: 0;
+    text-align: left;
+    background-color: transparent;
+    width: 100%;
+  }
+
+  .nav::before {
+    position: static;
+  }
+
+  .nav__list {
+    flex-direction: row;
+  }
+
+  .nav__link {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 1.38;
+  }
+
+  .nav__link_active {
+    font-weight: 500;
+    border: none;
+    padding: 0;
+  }
+  
+  .nav__list-item {
+    margin: 0 16px 0 0;
+  }
+  
+  .nav__list-item:last-of-type {
+    margin: 0 0 0 auto;
+  }
+
+  .nav__list-item:first-of-type {
+    display: none;
+  }
+
+}
