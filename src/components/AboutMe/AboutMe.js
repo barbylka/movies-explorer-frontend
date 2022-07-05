@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import './AboutMe.css';
 import me from '../../images/me.jpg';
 
@@ -20,14 +19,14 @@ function AboutMe() {
         </div>
         <ul className='me__flex'>
           <li className='me__item'>
-            <Link to='https://www.facebook.com/irina.sergeeva.3726' className='me__link' target='_blank'>
+            <a href='https://www.facebook.com/irina.sergeeva.3726' rel="noreferrer" className='me__link' target='_blank'>
               Facebook
-            </Link>
+            </a>
           </li>
           <li className='me__item'>
-            <Link to='https://github.com/barbylka' className='me__link' target='_blank'>
+            <a href='https://github.com/barbylka' rel="noreferrer" className='me__link' target='_blank'>
               Github
-            </Link>
+            </a>
           </li>
         </ul>
       </div>

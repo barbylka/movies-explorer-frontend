@@ -47,6 +47,7 @@
 
 .portfolio__link:hover {
   opacity: .7;
+  cursor: pointer;
 }
 
 .portfolio__link-arrow {

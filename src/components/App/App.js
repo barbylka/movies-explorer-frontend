@@ -4,6 +4,12 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import Main from '../Main/Main';
 import SearchForm from '../SearchForm/SearchForm';
+import MoviesCardList from '../MoviesCardList/MoviesCardList';
+import PageNotFound from '../PageNotFound/PageNotFound';
+import Preloader from '../Preloader/Preloader';
+import Register from '../Register/Register';
+import Login from '../Login/Login';
+import Profile from '../Profile/Profile';
 
 function App() {
   return (
@@ -26,6 +32,8 @@ function App() {
             <>
               <Header isDark={false} isLogged={true} />
               <SearchForm />
+              <Preloader isWaiting={false} />
+              <MoviesCardList />
               <Footer />
             </>
           }
@@ -35,7 +43,26 @@ function App() {
           element={
             <>
               <Header isDark={false} isLogged={true} />
+              <SearchForm />
+              <Preloader isWaiting={false} />
+              <MoviesCardList isSaved={true} />
               <Footer />
+            </>
+          }
+        />
+        <Route
+          path='/signup'
+          element={
+            <>
+              <Register />
+            </>
+          }
+        />
+        <Route
+          path='/signin'
+          element={
+            <>
+              <Login />
             </>
           }
         />
@@ -44,16 +71,13 @@ function App() {
           element={
             <>
               <Header isDark={false} isLogged={true} />
+              <Profile />
             </>
           }
         />
         <Route
-          path='/signup'
-          element={
-            <>
-
-            </>
-          }
+          path="*"
+          element={<PageNotFound />}
         />
       </Routes>
     </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
 import Navigation from '../Navigation/Navigation';
-import logo from '../../images/logo.svg';
+import Logo from '../Logo/Logo';
 
 function Header({ isDark, isLogged }) {
   const [isBurgerOpened, setIsBurgerOpened] = React.useState(false);
@@ -23,7 +23,7 @@ function Header({ isDark, isLogged }) {
   return (
     <header className={headerClassName}>
       <div className='header__wrapper'>
-        <Link to='/'><img src={logo} alt='Лого проекта' className='header__logo' /></Link>
+        <Logo />
         {isLogged ? (
           <>
             <Navigation isBurgerOpened={isBurgerOpened} closeBurger={closeBurger} />
@@ -32,8 +32,8 @@ function Header({ isDark, isLogged }) {
           </>
         ) : (
           <>
-            <Link className='header__link' to='/signin'>Регистрация</Link>
-            <Link className='header__link header__link_color_green' to='/signup'>Войти</Link>
+            <Link className='header__link' to='/signup'>Регистрация</Link>
+            <Link className='header__link header__link_color_green' to='/signin'>Войти</Link>
           </>
         )}
       </div>
