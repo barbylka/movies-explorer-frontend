@@ -47,6 +47,8 @@
 
 .search__input:focus {
   outline: none;
+  border: 1.5px solid #3456F3;
+  border-radius: 50px;
 }
 
 .search__submit-btn {
