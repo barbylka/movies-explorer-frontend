@@ -13,11 +13,18 @@ function MoviesCardList({ cards, moviesErrorMessage, isSaved, onSaveMovie, onDel
       return 8
     }
   };
+  const addCardsNumber = () => {
+    if (screenWidth >= 1020) {
+      return 3
+    } else {
+      return 2
+    }
+  };
 
   const [cardNumber, setCardNumber] = React.useState(numberOfCards);
 
   const showMoreCards = () => {
-    setCardNumber(cardNumber + 2);
+    setCardNumber(cardNumber + addCardsNumber());
   }
 
   React.useEffect(() => {
