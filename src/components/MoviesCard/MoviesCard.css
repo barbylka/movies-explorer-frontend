@@ -68,10 +68,15 @@
 
 .movies-card__thumb {
   width: 100%;
-  object-fit: contain;
+  max-height: 203px;
+  object-fit: cover;
   object-position: center;
   padding: 0;
   display: block;
+}
+
+.movies-card__thumb:hover {
+  cursor: pointer;
 }
 
 @media screen and (min-width: 600px) {

@@ -1,10 +1,15 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 import Logo from '../Logo/Logo';
 import UserForm from '../UserForm/UserForm';
 import './Login.css';
 import { useValidation } from '../../utils/validation';
 
-function Login() {
+function Login({ onLogin, statusMessage }) {
+  const [data, setData] = React.useState({
+    email: "",
+    password: "",
+  });
   const emailValid = useValidation(true);
   const passwordValid = useValidation(true);
 
@@ -12,8 +17,17 @@ function Login() {
 
   const submitButtonClassName = `form__button ${isFormWrong && 'form__button_disabled'}`;
 
+  const handleChange = (evt) => {
+    const { name, value } = evt.target;
+    setData({
+      ...data,
+      [name]: value,
+    });
+  };
+
   function handleSubmit(e) {
     e.preventDefault();
+    onLogin(data.email, data.password);
   }
 
   return (
@@ -34,6 +48,7 @@ function Login() {
               placeholder='E-mail'
               required
               onChange={(e) => {
+                handleChange(e);
                 emailValid.onChange(e);
               }}
             />
@@ -49,12 +64,14 @@ function Login() {
               placeholder='Пароль'
               required
               onChange={(e) => {
+                handleChange(e);
                 passwordValid.onChange(e);
               }}
             />
             <span className='form__text-error password-input-error'>{passwordValid.isWrong && passwordValid.errorMessage}</span>
           </label>
         </fieldset>
+        <span className='form__profile-error profile-input-error'>{(statusMessage.length !== 0) && statusMessage}</span>
         <button
           className={submitButtonClassName}
           type='submit'

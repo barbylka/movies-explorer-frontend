@@ -4,9 +4,9 @@ import './Header.css';
 import Navigation from '../Navigation/Navigation';
 import Logo from '../Logo/Logo';
 
-function Header({ isDark, isLogged }) {
+function Header({ isLogged }) {
   const [isBurgerOpened, setIsBurgerOpened] = React.useState(false);
-  const headerClassName = `header ${isDark && 'header__background_dark'}`;
+  const headerClassName = `header ${!isLogged && 'header__background_dark'}`;
   const burgerOpenButtonClassName = `header__open-burger ${isBurgerOpened && 'header__open-burger_hidden'}`;
   const burgerCloseButtonClassName = `header__close-burger_hidden ${isBurgerOpened && 'header__close-burger'}`;
 
