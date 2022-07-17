@@ -24,7 +24,6 @@ function MoviesCardList({ cards, moviesErrorMessage, isSaved, onSaveMovie, onDel
   const [cardNumber, setCardNumber] = React.useState(numberOfCards);
 
   const showMoreCards = () => {
-    console.log(addCardsNumber());
     setCardNumber(cardNumber + addCardsNumber());
   }
 
