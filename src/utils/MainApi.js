@@ -114,7 +114,7 @@ class MainApi {
 };
 
 const mainApi = new MainApi({
-  baseUrl: "https:/api.diplomaa.nomoredomains.xyz",
+  baseUrl: "https://api.diplomaa.nomoredomains.xyz",
 });
 
 export default mainApi;
