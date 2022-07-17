@@ -51,6 +51,7 @@
 
 .preloader_active {
     display: flex;
+    box-sizing: border-box;
 }
 
 .preloader__container {

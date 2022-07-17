@@ -1,10 +1,16 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 import Logo from '../Logo/Logo';
 import UserForm from '../UserForm/UserForm';
 import './Register.css';
 import { useValidation } from '../../utils/validation';
 
-function Register() {
+function Register({ onRegister, statusMessage }) {
+  const [data, setData] = React.useState({
+    name: "",
+    email: "",
+    password: "",
+  });
   const nameValid = useValidation(true);
   const emailValid = useValidation(true);
   const passwordValid = useValidation(true);
@@ -13,9 +19,18 @@ function Register() {
 
   const submitButtonClassName = `form__button ${isFormWrong && 'form__button_disabled'}`;
 
+  const handleChange = (evt) => {
+    const { name, value } = evt.target;
+    setData({
+      ...data,
+      [name]: value,
+    });
+  };
+
   function handleSubmit(e) {
     e.preventDefault();
-  }
+    onRegister(data.name, data.email, data.password);
+  };
 
   return (
     <section className='register'>
@@ -37,10 +52,11 @@ function Register() {
               maxLength='30'
               placeholder='Имя'
               onChange={(e) => {
+                handleChange(e);
                 nameValid.onChange(e);
               }}
             />
-            <span className='form__text-error name-input-error'>{nameValid.isWrong && nameValid.errorMessage}</span>
+            <span className='form__text-error'>{nameValid.isWrong && nameValid.errorMessage}</span>
           </label>
           <label className='form__label'>
             E-mail
@@ -52,10 +68,11 @@ function Register() {
               name='email'
               placeholder='E-mail'
               onChange={(e) => {
+                handleChange(e);
                 emailValid.onChange(e);
               }}
             />
-            <span className='form__text-error email-input-error'>{emailValid.isWrong && emailValid.errorMessage}</span>
+            <span className='form__text-error'>{emailValid.isWrong && emailValid.errorMessage}</span>
           </label>
           <label className='form__label'>
             Пароль
@@ -67,12 +84,14 @@ function Register() {
               name='password'
               placeholder='Пароль'
               onChange={(e) => {
+                handleChange(e);
                 passwordValid.onChange(e);
               }}
             />
-            <span className='form__text-error password-input-error'>{passwordValid.isWrong && passwordValid.errorMessage}</span>
+            <span className='form__text-error'>{passwordValid.isWrong && passwordValid.errorMessage}</span>
           </label>
         </fieldset>
+        <span className='form__profile-error'>{(statusMessage.length !== 0) && statusMessage}</span>
         <button
           className={submitButtonClassName}
           type='submit'

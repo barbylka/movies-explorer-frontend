@@ -31,6 +31,7 @@
   justify-content: space-between;
   align-items: center;
   gap: 0;
+  position: relative;
 }
 
 .search__input {
@@ -49,6 +50,14 @@
   outline: none;
   border: 1.5px solid #3456F3;
   border-radius: 50px;
+}
+
+.search__text-error {
+  font-size: 10px;
+  color: #FF3055;
+  position: absolute;
+  left: 0;
+  bottom: -21px;
 }
 
 .search__submit-btn {

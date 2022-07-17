@@ -1,6 +1,8 @@
+import React from 'react';
 import './FilterCheckbox.css';
 
-function FilterCheckbox() {
+function FilterCheckbox({ onHandleCheckbox, isChecked }) {
+
   return (
     <label className='checkbox'>Короткометражки
       <input
@@ -8,6 +10,8 @@ function FilterCheckbox() {
         id='input-checkbox'
         name='short'
         className='checkbox__input'
+        checked={isChecked}
+        onChange={onHandleCheckbox}
       />
       <span className='checkbox__pseudo-item' />
     </label>

@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
 import React from 'react';
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import UserForm from '../UserForm/UserForm';
 import './Profile.css';
-import currentUser from '../../utils/user';
 import { useValidation } from '../../utils/validation';
 
-function Profile() {
+function Profile({ onSignOut, onUpdateUser, statusMessage }) {
+  const currentUser = React.useContext(CurrentUserContext);
   const [name, setName] = React.useState(`${currentUser.name}`);
   const [email, setEmail] = React.useState(`${currentUser.email}`);
   const [isFormOpened, setIsFormOpened] = React.useState(false);
@@ -14,17 +15,10 @@ function Profile() {
   const nameValid = useValidation(false);
   const emailValid = useValidation(false);
 
-  const isFormWrong = nameValid.isWrong || emailValid.isWrong;
+
+  const isFormWrong = nameValid.isWrong || emailValid.isWrong || (name === currentUser.name && email === currentUser.email);
 
   const submitButtonClassName = `form__button_hidden ${isFormOpened && 'form__button form__button_visible'} ${isFormWrong && 'form__button_disabled'}`;
-
-  function openForm() {
-    setIsFormOpened(true);
-  }
-
-  function closeForm() {
-    setIsFormOpened(false);
-  }
 
   function handleChangeName(e) {
     setName(e.target.value);
@@ -34,8 +28,27 @@ function Profile() {
     setEmail(e.target.value);
   }
 
+  React.useEffect(() => {
+    setName(currentUser.name);
+    setEmail(currentUser.email);
+  }, [currentUser]);
+
+  function openForm() {
+    setIsFormOpened(true);
+  }
+
+  function closeForm() {
+    setIsFormOpened(false);
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
+
+    onUpdateUser({
+      name: name,
+      email: email,
+    });
+
     closeForm();
   }
 
@@ -57,12 +70,13 @@ function Profile() {
               minLength='2'
               maxLength='30'
               disabled={!isFormOpened}
-              value={name} //temporary solution, while there are no hooks
+              value={name || ''}
               onChange={(e) => {
                 handleChangeName(e);
                 nameValid.onChange(e);
               }}
             />
+            <span className='form__text-error email-input-error'>{nameValid.isWrong && nameValid.errorMessage}</span>
           </label>
           <label className='form__label form__label_type_profile'>
             E-mail
@@ -73,18 +87,19 @@ function Profile() {
               required
               name='email'
               disabled={!isFormOpened}
-              value={email} //temporary solution, while there are no hooks
+              value={email || ''}
               onChange={(e) => {
                 handleChangeEmail(e);
                 emailValid.onChange(e);
               }}
             />
+            <span className='form__text-error email-input-error'>{emailValid.isWrong && emailValid.errorMessage}</span>
           </label>
         </fieldset>
-        <span className='form__profile-error profile-input-error'></span>
+        <span className='form__profile-error profile-input-error'>{((statusMessage.length !== 0) && statusMessage)}</span>
         <button className={submitButtonClassName} type='submit'>Сохранить</button>
         <button className={editButtonClassName} type='button' onClick={openForm}>Редактировать</button>
-        <Link className={logoutClassName} to='/signin'>Выйти из аккаунта</Link>
+        <Link className={logoutClassName} onClick={onSignOut} to='/signin'>Выйти из аккаунта</Link>
       </UserForm>
     </section >
   );

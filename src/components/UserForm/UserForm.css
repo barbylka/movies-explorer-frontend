@@ -51,6 +51,7 @@
   padding: 5px 0 10px;
   border: none;
   border-bottom: 1px solid #E8E8E8;
+  background-color: transparent;
 }
 
 .form__input_color_red {
@@ -181,7 +182,7 @@
 
 .form__profile-error {
   position: absolute;
-  bottom: 65px;
+  bottom: 100px;
   left: 0;
   width: 100%;
   text-align: center;
