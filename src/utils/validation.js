@@ -6,9 +6,6 @@ export const useValidation = (valid) => {
   const [errorMessage, setErrorMessage] = React.useState("");
 
   const validateNameInput = (value) => {
-    console.log(value)
-    console.log(nameRegExp.test(value))
-
     return nameRegExp.test(value);
   }
 
@@ -17,9 +14,6 @@ export const useValidation = (valid) => {
       setIsWrong(true);
       setErrorMessage(evt.target.validationMessage);
     } else if ((evt.target.id === "name-input") && (validateNameInput(evt.target.value) === false)) {
-      console.log(evt.target.id === "name-input")
-      console.log(validateNameInput(evt.target.value === false))
-
       setIsWrong(true);
       setErrorMessage("Имя от 2 до 30 знаков и может содержать латиницу, кириллицу, пробел или дефис");
     } else {
